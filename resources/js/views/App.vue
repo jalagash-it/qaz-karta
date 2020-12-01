@@ -24,11 +24,15 @@
             >
           </b-nav-form>
 
-          <b-nav-item-dropdown text="Lang" right>
-            <b-dropdown-item href="#">EN</b-dropdown-item>
-            <b-dropdown-item href="#">ES</b-dropdown-item>
-            <b-dropdown-item href="#">RU</b-dropdown-item>
-            <b-dropdown-item href="#">FA</b-dropdown-item>
+          <b-nav-item-dropdown :text="$t('navbar.lang')" right>
+            <b-dropdown-item
+              href="#"
+              v-for="(lang, i) in ['kk', 'ru', 'en']"
+              :key="i"
+              @click="$i18n.locale = lang"
+            >
+              {{ lang }}
+            </b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown right>
@@ -42,7 +46,7 @@
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
             <template v-slot:button-content>
-              <em>Guest</em>
+              <em>{{ $t("navbar.guest") }}</em>
             </template>
             <b-dropdown-item href="#">login</b-dropdown-item>
             <b-dropdown-item href="#">register</b-dropdown-item>
@@ -58,6 +62,9 @@
 export default {
   data() {
     return {};
+  },
+  mounted() {
+    window["test"] = this;
   },
 };
 </script>
