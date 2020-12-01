@@ -1,30 +1,19 @@
 <template>
-
-  <div style="height: 500px; width: 100%">
-    <div style="height: 200px overflow: auto;">
+  <div style="height: 100%; width: 100%">
+    <div style="display: none">
       <p>First marker is placed at {{ withPopup.lat }}, {{ withPopup.lng }}</p>
       <p>Center is at {{ currentCenter }} and the zoom is: {{ currentZoom }}</p>
-      <button @click="showLongText">
-        Toggle long popup
-      </button>
-      <button @click="showMap = !showMap">
-        Toggle map
-      </button>
+      <button @click="showLongText">Toggle long popup</button>
     </div>
     <l-map
-      v-if="showMap"
       :zoom="zoom"
       :center="center"
       :options="mapOptions"
-      style="height: 80%"
       @update:center="centerUpdate"
       @update:zoom="zoomUpdate"
     >
-      <l-tile-layer
-        :url="url"
-        :attribution="attribution"
-      />
-      <l-marker :lat-lng="withPopup">
+      <l-tile-layer :url="url" :attribution="attribution" />
+      <!-- <l-marker :lat-lng="withPopup">
         <l-popup>
           <div @click="innerClick">
             I am a popup
@@ -47,7 +36,7 @@
             </p>
           </div>
         </l-tooltip>
-      </l-marker>
+      </l-marker> -->
     </l-map>
   </div>
 </template>
@@ -63,24 +52,23 @@ export default {
     LTileLayer,
     LMarker,
     LPopup,
-    LTooltip
+    LTooltip,
   },
   data() {
     return {
-      zoom: 13,
-      center: latLng(47.41322, -1.219482),
-      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      zoom: 11,
+      center: latLng(43.257206, 76.886444),
+      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       withPopup: latLng(47.41322, -1.219482),
       withTooltip: latLng(47.41422, -1.250482),
-      currentZoom: 11.5,
-      currentCenter: latLng(47.41322, -1.219482),
+      currentZoom: 11,
+      currentCenter: latLng(43.257206, 76.886444),
       showParagraph: false,
       mapOptions: {
-        zoomSnap: 0.5
+        zoomSnap: 0.5,
       },
-      showMap: true
     };
   },
   methods: {
@@ -95,7 +83,7 @@ export default {
     },
     innerClick() {
       alert("Click!");
-    }
-  }
+    },
+  },
 };
 </script>

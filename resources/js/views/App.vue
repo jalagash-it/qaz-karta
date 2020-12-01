@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-container">
     <b-navbar toggleable="lg" type="dark" variant="info">
       <b-navbar-brand href="#">NavBar</b-navbar-brand>
 
@@ -39,10 +39,18 @@
             <b-dropdown-item href="#">Profile</b-dropdown-item>
             <b-dropdown-item href="#">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
+          <b-nav-item-dropdown right>
+            <!-- Using 'button-content' slot -->
+            <template v-slot:button-content>
+              <em>Guest</em>
+            </template>
+            <b-dropdown-item href="#">login</b-dropdown-item>
+            <b-dropdown-item href="#">register</b-dropdown-item>
+          </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <router-view></router-view>
+    <router-view class="router-view"></router-view>
   </div>
 </template>
 
@@ -53,3 +61,16 @@ export default {
   },
 };
 </script>
+<style>
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.navbar {
+  flex-grow: 0;
+}
+.router-view {
+  flex-grow: 1;
+}
+</style>
