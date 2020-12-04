@@ -1,17 +1,15 @@
 <template>
   <div class="main-container">
     <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand href="#">QAZ-KARTA</b-navbar-brand>
+      <b-navbar-brand href="#">Zhetisu</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-<!--
+
       <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
+        <!--<b-navbar-nav>
           <b-nav-item href="#">Link</b-nav-item>
           <b-nav-item href="#" disabled>Disabled</b-nav-item>
-        </b-navbar-nav>
-
-         Right aligned nav items -->
+        </b-navbar-nav>Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-nav-form>
             <b-form-input
@@ -23,31 +21,31 @@
               {{ $t("navbar.search") }}
             </b-button>
           </b-nav-form>
-
           <b-nav-item-dropdown :text="$t('navbar.lang')" right>
             <b-dropdown-item
               href="#"
-              v-for="(lang, i) in ['kk', 'ru', 'en']"
+              v-for="(lang, i) in ['қаз', 'рус', 'eng']"
               :key="i"
               @click="$i18n.locale = lang"
             >
               {{ lang }}
             </b-dropdown-item>
           </b-nav-item-dropdown>
-
-          <b-nav-item-dropdown right>
+          <b-nav-item-dropdown right v-if="user !== null">
             <!-- Using 'button-content' slot -->
             <template v-slot:button-content>
               <em>{{ $t("navbar.user") }}</em>
             </template>
+
             <b-dropdown-item href="#">
               {{ $t("navbar.profile") }}
             </b-dropdown-item>
+
             <b-dropdown-item href="#">
-              {{ $t("navbar.Signout") }}
+              {{ $t("navbar.signout") }}
             </b-dropdown-item>
           </b-nav-item-dropdown>
-          <b-nav-item-dropdown right>
+          <b-nav-item-dropdown right v-else>
             <!-- Using 'button-content' slot -->
             <template v-slot:button-content>
               <em>{{ $t("navbar.guest") }}</em>
@@ -69,7 +67,9 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      user: {},
+    };
   },
   mounted() {
     window["test"] = this;

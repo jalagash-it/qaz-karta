@@ -13,6 +13,211 @@
       @update:zoom="zoomUpdate"
     >
       <l-tile-layer :url="url" :attribution="attribution" />
+      <l-control position="bottomleft">
+        <b-form @submit="onSubmit" v-if="showAddForm">
+          <b-tabs content-class="mt-3">
+            <b-tab title="Қазақша" active>
+              <div class="mt-3">
+                Категориялар: <strong>{{ selected }}</strong>
+              </div>
+              <b-form-select
+                v-model="selected"
+                :options="options"
+                size="sm"
+                class="mt-3"
+              ></b-form-select>
+
+              <b-form-group
+                class="btn-margin"
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Атауы"
+                label-for="input-sm"
+              >
+                <b-form-input id="input-sm" size="sm"></b-form-input>
+              </b-form-group>
+              <p>
+                Координаты: <input type="number" /> <input type="number" />
+                <button>+</button>
+              </p>
+
+              <b-form-group
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Мекен-жайы"
+                label-for="input-sm"
+              >
+                <b-form-input id="input-sm" size="sm"></b-form-input>
+              </b-form-group>
+              <b-form-group
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Контакті"
+                label-for="input-sm"
+              >
+                <b-form-input id="input-sm" size="sm"></b-form-input>
+              </b-form-group>
+              <b-form-group
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Сипаты"
+                label-for="input-sm"
+              >
+                <b-form-input id="input-sm" size="sm"></b-form-input>
+              </b-form-group>
+              <p>Фотолар:</p>
+              <input
+                multiple
+                type="file"
+                ref="inputFile1"
+                style="display: none"
+              />
+              <b-button class="btn-margin" @click="chooseFile"
+                >Фото қосу</b-button
+              >
+            </b-tab>
+            <b-tab title="Русский">
+              <div class="mt-3">
+                Категориялар: <strong>{{ selected }}</strong>
+              </div>
+              <b-form-select
+                v-model="selected"
+                :options="options"
+                size="sm"
+                class="mt-3"
+              ></b-form-select>
+
+              <b-form-group
+                class="btn-margin"
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Атауы"
+                label-for="input-sm"
+              >
+                <b-form-input id="input-sm" size="sm"></b-form-input>
+              </b-form-group>
+              <p>
+                Координаты: <input type="number" /> <input type="number" />
+                <button>+</button>
+              </p>
+
+              <b-form-group
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Мекен-жайы"
+                label-for="input-sm"
+              >
+                <b-form-input id="input-sm" size="sm"></b-form-input>
+              </b-form-group>
+              <b-form-group
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Контакті"
+                label-for="input-sm"
+              >
+                <b-form-input id="input-sm" size="sm"></b-form-input>
+              </b-form-group>
+              <b-form-group
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Сипаты"
+                label-for="input-sm"
+              >
+                <b-form-input id="input-sm" size="sm"></b-form-input>
+              </b-form-group>
+              <p>Фотолар:</p>
+              <input
+                multiple
+                type="file"
+                ref="inputFile1"
+                style="display: none"
+              />
+              <b-button class="btn-margin" @click="chooseFile"
+                >Фото қосу</b-button
+              ></b-tab
+            >
+            <b-tab title="English">
+              <div class="mt-3">
+                Category: <strong>{{ selected }}</strong>
+              </div>
+              <b-form-select
+                v-model="selected"
+                :options="options"
+                size="sm"
+                class="mt-3"
+              ></b-form-select>
+
+              <b-form-group
+                class="btn-margin"
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Атауы"
+                label-for="input-sm"
+              >
+                <b-form-input id="input-sm" size="sm"></b-form-input>
+              </b-form-group>
+              <p>
+                Координаты: <input type="number" /> <input type="number" />
+                <button>+</button>
+              </p>
+
+              <b-form-group
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Мекен-жайы"
+                label-for="input-sm"
+              >
+                <b-form-input id="input-sm" size="sm"></b-form-input>
+              </b-form-group>
+              <b-form-group
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Контакті"
+                label-for="input-sm"
+              >
+                <b-form-input id="input-sm" size="sm"></b-form-input>
+              </b-form-group>
+              <b-form-group
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Сипаты"
+                label-for="input-sm"
+              >
+                <b-form-input id="input-sm" size="sm"></b-form-input>
+              </b-form-group>
+              <p>Фотолар:</p>
+              <input
+                multiple
+                type="file"
+                ref="inputFile1"
+                style="display: none"
+              />
+              <b-button class="btn-margin" @click="chooseFile"
+                >Фото қосу</b-button
+              ></b-tab
+            >
+          </b-tabs>
+          <b-button class="btn-margin" type="submit" variant="primary"
+            >Submit</b-button
+          >
+          <b-button class="btn-margin" type="reset" variant="danger"
+            >Reset</b-button
+          >
+        </b-form>
+        <b-button @click="showAddForm = !showAddForm">+</b-button>
+      </l-control>
       <!-- <l-marker :lat-lng="withPopup">
         <l-popup>
           <div @click="innerClick">
@@ -43,7 +248,14 @@
 
 <script>
 import { latLng } from "leaflet";
-import { LMap, LTileLayer, LMarker, LPopup, LTooltip } from "vue2-leaflet";
+import {
+  LMap,
+  LTileLayer,
+  LMarker,
+  LPopup,
+  LTooltip,
+  LControl,
+} from "vue2-leaflet";
 
 export default {
   name: "Example",
@@ -53,9 +265,24 @@ export default {
     LMarker,
     LPopup,
     LTooltip,
+    LControl,
   },
   data() {
     return {
+      selected: null,
+      options: [
+        { value: null, text: "Вогзалы" },
+        { value: "a", text: "Асхана" },
+        { value: "b", text: "Selected Option" },
+        { value: { C: "3PO" }, text: "This is an option with object value" },
+        { value: "d", text: "This one is disabled", disabled: true },
+      ],
+      form: {
+        kk: {},
+        ru: {},
+        en: {},
+      },
+      showAddForm: false,
       zoom: 11,
       center: latLng(43.257206, 76.886444),
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -72,6 +299,7 @@ export default {
     };
   },
   methods: {
+    clickHandler() {},
     zoomUpdate(zoom) {
       this.currentZoom = zoom;
     },
@@ -84,6 +312,14 @@ export default {
     innerClick() {
       alert("Click!");
     },
+    chooseFile() {
+      this.$refs.inputFile1.click();
+    },
   },
 };
 </script>
+<style scoped>
+.btn-margin {
+  margin: 5px;
+}
+</style>

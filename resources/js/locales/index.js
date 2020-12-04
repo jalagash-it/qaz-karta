@@ -5,7 +5,7 @@ export default {
             lang: "тіл",
             search: "іздеу",
             profile: "профиль",
-            Signout: "кіру",
+            signout: "шығу",
             user: "қолданушы",
             login: "логин",
             register: "тіркеу"
@@ -17,7 +17,7 @@ export default {
             lang: "язык",
             search: "поиск",
             profile: "профиль",
-            Signout: "войти",
+            signout: "выйти",
             user: "пользователь",
             login: "логин",
             register: "регистрация"
@@ -29,7 +29,7 @@ export default {
             lang: "lang",
             search: "search",
             profile: "profile",
-            Signout: "Sign out",
+            signout: "Sign out",
             user: "user",
             login: "login",
             register: "register"
