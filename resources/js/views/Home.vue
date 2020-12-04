@@ -20,13 +20,14 @@
               <div class="mt-3">
                 Категориялар: <strong>{{ selected }}</strong>
               </div>
-              <b-form-select
-                v-model="selected"
-                :options="options"
-                size="sm"
-                class="mt-3"
-              ></b-form-select>
-
+              <b-form-group>
+                <b-form-select
+                  v-model="selected"
+                  :options="options"
+                  size="sm"
+                  class="mt-3"
+                ></b-form-select>
+              </b-form-group>
               <b-form-group
                 class="btn-margin"
                 label-cols="4"
@@ -79,6 +80,8 @@
               <b-button class="btn-margin" @click="chooseFile"
                 >Фото қосу</b-button
               >
+              <b-button class="btn-margin" @click="seveFile">Сақтау</b-button>
+              <b-table striped hover :items="itemsName"></b-table>
             </b-tab>
             <b-tab title="Русский">
               <div class="mt-3">
@@ -142,8 +145,8 @@
               />
               <b-button class="btn-margin" @click="chooseFile"
                 >Фото қосу</b-button
-              ></b-tab
-            >
+              >
+            </b-tab>
             <b-tab title="English">
               <div class="mt-3">
                 Category: <strong>{{ selected }}</strong>
@@ -269,6 +272,7 @@ export default {
   },
   data() {
     return {
+      itemsName: [],
       selected: null,
       options: [
         { value: null, text: "Вогзалы" },
@@ -314,6 +318,9 @@ export default {
     },
     chooseFile() {
       this.$refs.inputFile1.click();
+    },
+    seveFile() {
+      this.itemsFile.push(...this.$refs.inputFile1.files);
     },
   },
 };
