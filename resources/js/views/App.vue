@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
     <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand href="#">Zhetisu</b-navbar-brand>
+      <b-navbar-brand href="#">Qaz-karta</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -16,7 +16,8 @@
               size="sm"
               class="mr-sm-2"
               :placeholder="$t('navbar.search')"
-            ></b-form-input>
+            >
+            </b-form-input>
             <b-button size="sm" class="my-2 my-sm-0" type="submit">
               {{ $t("navbar.search") }}
             </b-button>

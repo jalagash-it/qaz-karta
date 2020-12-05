@@ -14,22 +14,10 @@
     >
       <l-tile-layer :url="url" :attribution="attribution" />
       <l-control position="bottomleft">
-        <b-form @submit="onSubmit" v-if="showAddForm">
-          <b-tabs content-class="mt-3">
+        <b-form @submit="onSubmit" v-if="showAddForm" class="bg-color">
+          <b-tabs>
             <b-tab title="Қазақша" active>
-              <div class="mt-3">
-                Категориялар: <strong>{{ selected }}</strong>
-              </div>
-              <b-form-group>
-                <b-form-select
-                  v-model="selected"
-                  :options="options"
-                  size="sm"
-                  class="mt-3"
-                ></b-form-select>
-              </b-form-group>
               <b-form-group
-                class="btn-margin"
                 label-cols="4"
                 label-cols-lg="2"
                 label-size="sm"
@@ -38,11 +26,35 @@
               >
                 <b-form-input id="input-sm" size="sm"></b-form-input>
               </b-form-group>
-              <p>
-                Координаты: <input type="number" /> <input type="number" />
-                <button>+</button>
-              </p>
-
+              <b-form-group
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Долгота"
+                label-for="input-sm"
+              >
+                <b-form-input
+                  type="number"
+                  id="input-sm"
+                  size="sm"
+                ></b-form-input>
+              </b-form-group>
+              <b-form-group
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Широта"
+                label-for="input-sm"
+              >
+                <b-form-input
+                  type="number"
+                  id="input-sm"
+                  size="sm"
+                ></b-form-input>
+              </b-form-group>
+              <b-form-group>
+                <b-button block>Картаға енгізу</b-button>
+              </b-form-group>
               <b-form-group
                 label-cols="4"
                 label-cols-lg="2"
@@ -70,7 +82,6 @@
               >
                 <b-form-input id="input-sm" size="sm"></b-form-input>
               </b-form-group>
-              <p>Фотолар:</p>
               <input
                 multiple
                 type="file"
@@ -90,15 +101,157 @@
                 :fields="fields"
               ></b-table>
             </b-tab>
-            <b-tab title="Русский"> </b-tab>
-            <b-tab title="English"> </b-tab>
+            <b-tab title="Русский">
+              <div class="mt-3">
+                Категорий: <strong>{{ selected }}</strong>
+              </div>
+              <b-form-group>
+                <b-form-select
+                  v-model="selected"
+                  :options="options"
+                  size="sm"
+                  class="mt-3"
+                >
+                </b-form-select>
+              </b-form-group>
+              <b-form-group
+                class="btn-margin"
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Название"
+                label-for="input-sm"
+              >
+                <b-form-input id="input-sm" size="sm"></b-form-input>
+              </b-form-group>
+              <p>
+                Координаты: <input type="number" />
+                <input type="number" />
+                <button>+</button>
+              </p>
+
+              <b-form-group
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Адрес"
+                label-for="input-sm"
+              >
+                <b-form-input id="input-sm" size="sm"></b-form-input>
+              </b-form-group>
+              <b-form-group
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Контакты"
+                label-for="input-sm"
+              >
+                <b-form-input id="input-sm" size="sm"></b-form-input>
+              </b-form-group>
+              <b-form-group
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Описание"
+                label-for="input-sm"
+              >
+                <b-form-input id="input-sm" size="sm"></b-form-input>
+              </b-form-group>
+              <input
+                multiple
+                type="file"
+                ref="inputFile1"
+                style="display: none"
+                @change="addFiles"
+              />
+              <b-button class="btn-margin" @click="chooseFile"
+                >Добавить фото</b-button
+              >
+
+              <!-- <b-button class="btn-margin" @click="seveFile">Сақтау</b-button> -->
+              <b-table
+                striped
+                hover
+                :items="itemsLocal"
+                :fields="fields"
+              ></b-table>
+            </b-tab>
+            <b-tab title="English">
+              <div class="mt-3">
+                Categories: <strong>{{ selected }}</strong>
+              </div>
+              <b-form-group>
+                <b-form-select
+                  v-model="selected"
+                  :options="options"
+                  size="sm"
+                  class="mt-3"
+                ></b-form-select>
+              </b-form-group>
+              <b-form-group
+                class="btn-margin"
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Name"
+                label-for="input-sm"
+              >
+                <b-form-input id="input-sm" size="sm"></b-form-input>
+              </b-form-group>
+              <p>
+                Coordinates: <input type="number" /> <input type="number" />
+                <button>+</button>
+              </p>
+              <b-form-group
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Address"
+                label-for="input-sm"
+              >
+                <b-form-input id="input-sm" size="sm"></b-form-input>
+              </b-form-group>
+              <b-form-group
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Contacts"
+                label-for="input-sm"
+              >
+                <b-form-input id="input-sm" size="sm"></b-form-input>
+              </b-form-group>
+              <b-form-group
+                label-cols="4"
+                label-cols-lg="2"
+                label-size="sm"
+                label="Description"
+                label-for="input-sm"
+              >
+                <b-form-input id="input-sm" size="sm"></b-form-input>
+              </b-form-group>
+              <p>Photos:</p>
+              <input
+                multiple
+                type="file"
+                ref="inputFile1"
+                style="display: none"
+                @change="addFiles"
+              />
+              <b-button class="btn-margin" @click="chooseFile"
+                >add photo</b-button
+              >
+
+              <!-- <b-button class="btn-margin" @click="seveFile">Сақтау</b-button> -->
+              <b-table striped hover :items="itemsLocal" :fields="fields">
+              </b-table>
+            </b-tab>
           </b-tabs>
-          <!-- <b-button class="btn-margin" type="submit" variant="primary"
+          <b-button class="btn-margin" type="submit" variant="primary"
             >Submit</b-button
           >
           <b-button class="btn-margin" type="reset" variant="danger"
             >Reset</b-button
-          > -->
+          >
         </b-form>
         <b-button @click="showAddForm = !showAddForm">+</b-button>
       </l-control>
@@ -166,10 +319,10 @@ export default {
       itemsLocal: [],
       selected: null,
       options: [
-        { value: null, text: "Вогзалы" },
-        { value: "a", text: "Асхана" },
-        { value: "b", text: "Selected Option" },
-        { value: { C: "3PO" }, text: "This is an option with object value" },
+        { value: null, text: "Airport & Railwayis st" },
+        { value: "a", text: "Dinning room" },
+        { value: "b", text: "ATM" },
+        { value: { C: "3PO" }, text: "Pharmacy" },
         { value: "d", text: "This one is disabled", disabled: true },
       ],
       form: {
@@ -177,7 +330,7 @@ export default {
         ru: {},
         en: {},
       },
-      showAddForm: false,
+      showAddForm: true,
       zoom: 11,
       center: latLng(43.257206, 76.886444),
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -221,7 +374,14 @@ export default {
 };
 </script>
 <style scoped>
+.bg-color {
+  background-color: #17a2b8;
+}
 .btn-margin {
   margin: 5px;
 }
+/* .custom-select {
+  margin-left: 80px;
+  width: 79%;
+} */
 </style>
