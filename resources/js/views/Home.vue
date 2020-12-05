@@ -76,148 +76,29 @@
                 type="file"
                 ref="inputFile1"
                 style="display: none"
+                @change="addFiles"
               />
               <b-button class="btn-margin" @click="chooseFile"
                 >Фото қосу</b-button
               >
-              <b-button class="btn-margin" @click="seveFile">Сақтау</b-button>
-              <b-table striped hover :items="itemsName"></b-table>
+
+              <!-- <b-button class="btn-margin" @click="seveFile">Сақтау</b-button> -->
+              <b-table
+                striped
+                hover
+                :items="itemsLocal"
+                :fields="fields"
+              ></b-table>
             </b-tab>
-            <b-tab title="Русский">
-              <div class="mt-3">
-                Категориялар: <strong>{{ selected }}</strong>
-              </div>
-              <b-form-select
-                v-model="selected"
-                :options="options"
-                size="sm"
-                class="mt-3"
-              ></b-form-select>
-
-              <b-form-group
-                class="btn-margin"
-                label-cols="4"
-                label-cols-lg="2"
-                label-size="sm"
-                label="Атауы"
-                label-for="input-sm"
-              >
-                <b-form-input id="input-sm" size="sm"></b-form-input>
-              </b-form-group>
-              <p>
-                Координаты: <input type="number" /> <input type="number" />
-                <button>+</button>
-              </p>
-
-              <b-form-group
-                label-cols="4"
-                label-cols-lg="2"
-                label-size="sm"
-                label="Мекен-жайы"
-                label-for="input-sm"
-              >
-                <b-form-input id="input-sm" size="sm"></b-form-input>
-              </b-form-group>
-              <b-form-group
-                label-cols="4"
-                label-cols-lg="2"
-                label-size="sm"
-                label="Контакті"
-                label-for="input-sm"
-              >
-                <b-form-input id="input-sm" size="sm"></b-form-input>
-              </b-form-group>
-              <b-form-group
-                label-cols="4"
-                label-cols-lg="2"
-                label-size="sm"
-                label="Сипаты"
-                label-for="input-sm"
-              >
-                <b-form-input id="input-sm" size="sm"></b-form-input>
-              </b-form-group>
-              <p>Фотолар:</p>
-              <input
-                multiple
-                type="file"
-                ref="inputFile1"
-                style="display: none"
-              />
-              <b-button class="btn-margin" @click="chooseFile"
-                >Фото қосу</b-button
-              >
-            </b-tab>
-            <b-tab title="English">
-              <div class="mt-3">
-                Category: <strong>{{ selected }}</strong>
-              </div>
-              <b-form-select
-                v-model="selected"
-                :options="options"
-                size="sm"
-                class="mt-3"
-              ></b-form-select>
-
-              <b-form-group
-                class="btn-margin"
-                label-cols="4"
-                label-cols-lg="2"
-                label-size="sm"
-                label="Атауы"
-                label-for="input-sm"
-              >
-                <b-form-input id="input-sm" size="sm"></b-form-input>
-              </b-form-group>
-              <p>
-                Координаты: <input type="number" /> <input type="number" />
-                <button>+</button>
-              </p>
-
-              <b-form-group
-                label-cols="4"
-                label-cols-lg="2"
-                label-size="sm"
-                label="Мекен-жайы"
-                label-for="input-sm"
-              >
-                <b-form-input id="input-sm" size="sm"></b-form-input>
-              </b-form-group>
-              <b-form-group
-                label-cols="4"
-                label-cols-lg="2"
-                label-size="sm"
-                label="Контакті"
-                label-for="input-sm"
-              >
-                <b-form-input id="input-sm" size="sm"></b-form-input>
-              </b-form-group>
-              <b-form-group
-                label-cols="4"
-                label-cols-lg="2"
-                label-size="sm"
-                label="Сипаты"
-                label-for="input-sm"
-              >
-                <b-form-input id="input-sm" size="sm"></b-form-input>
-              </b-form-group>
-              <p>Фотолар:</p>
-              <input
-                multiple
-                type="file"
-                ref="inputFile1"
-                style="display: none"
-              />
-              <b-button class="btn-margin" @click="chooseFile"
-                >Фото қосу</b-button
-              ></b-tab
-            >
+            <b-tab title="Русский"> </b-tab>
+            <b-tab title="English"> </b-tab>
           </b-tabs>
-          <b-button class="btn-margin" type="submit" variant="primary"
+          <!-- <b-button class="btn-margin" type="submit" variant="primary"
             >Submit</b-button
           >
           <b-button class="btn-margin" type="reset" variant="danger"
             >Reset</b-button
-          >
+          > -->
         </b-form>
         <b-button @click="showAddForm = !showAddForm">+</b-button>
       </l-control>
@@ -272,7 +153,17 @@ export default {
   },
   data() {
     return {
-      itemsName: [],
+      fields: [
+        {
+          key: "id",
+          label: "",
+        },
+        {
+          key: "name",
+          label: "Фотолар",
+        },
+      ],
+      itemsLocal: [],
       selected: null,
       options: [
         { value: null, text: "Вогзалы" },
@@ -319,8 +210,12 @@ export default {
     chooseFile() {
       this.$refs.inputFile1.click();
     },
-    seveFile() {
-      this.itemsFile.push(...this.$refs.inputFile1.files);
+    // seveFile() {
+    //   this.items.push(...this.$refs.inputFile1.files);
+    // },
+    addFiles() {
+      console.log(this.$refs.inputFile1.files);
+      this.itemsLocal.push(...this.$refs.inputFile1.files);
     },
   },
 };
